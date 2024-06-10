@@ -27,7 +27,9 @@ public class AppTest {
 		
 //		sqlSession.update("co.yedam.mapper.StudentMapper.updateStudent", std);
 		
-		mapper.updateStudent(std);
+//		mapper.updateStudent(std);
+		
+		mapper.deletStudent(std);
 		
 		sqlSession.commit();
 		
