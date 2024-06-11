@@ -12,7 +12,10 @@ public interface StudentMapper {
 
 	public int updateStudent(Student student);
 	
+
 	// 단건조회/
 	public Student getstuStudent(String stdNo);
+	public int deletStudent(Student student);
+	
 
 }
