@@ -11,5 +11,8 @@ public interface StudentMapper {
 	public int insertStudent(Student student);
 
 	public int updateStudent(Student student);
+	
+	// 단건조회/
+	public Student getstuStudent(String stdNo);
 
 }

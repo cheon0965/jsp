@@ -21,5 +21,14 @@
 		set phone = #{phone}
 		where std_no = #{stdNo}
 	</update>
+	
+	<select id="getstuStudent" parameterType="string" resultType="co.yedam.vo.Student">
+		select *
+		from tbl_student
+		where std_no = #{stdNo}
+	</select>
+	
+	
+	
 
 </mapper>
