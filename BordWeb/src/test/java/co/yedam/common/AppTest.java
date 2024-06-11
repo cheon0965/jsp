@@ -30,11 +30,7 @@ public class AppTest {
 //		sqlSession.update("co.yedam.mapper.StudentMapper.updateStudent", std);
 		
 //		mapper.updateStudent(std);
-<<<<<<< HEAD
-=======
-		
-		mapper.deletStudent(std);
->>>>>>> branch 'master' of https://github.com/cheon0965/jsp.git
+
 		
 		sqlSession.commit();
 		
