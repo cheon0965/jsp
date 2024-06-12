@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import co.yedam.mapper.BoardMapper;
 import co.yedam.mapper.StudentMapper;
+import co.yedam.service.BoardService;
+import co.yedam.service.BoardServiceImpl;
 import co.yedam.vo.BoardVO;
 import co.yedam.vo.Student;
 
@@ -17,6 +19,9 @@ public class AppTest {
 		
 		// interface - 구현객체.
 		BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
+		
+		BoardService svc = new BoardServiceImpl();
+		System.out.println(svc.getBoard(100));
 		
 //		Student std = new Student();
 //		std.setStdNo("s0010");
@@ -36,7 +41,7 @@ public class AppTest {
 		
 //		List<Student> list = sqlSession.selectList("co.yedam.mapper.StudentMapper.selectBlog");
 		
-		List<BoardVO> list = mapper.boardList();
+		List<BoardVO> list = mapper.boardListPaging(1);
 				
 		for(BoardVO std1 : list) {
 			System.out.println(std1.toString());

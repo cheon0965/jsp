@@ -9,28 +9,33 @@ import co.yedam.mapper.BoardMapper;
 import co.yedam.mapper.StudentMapper;
 import co.yedam.vo.BoardVO;
 
-public class BoardServiceImpl implements BoardService{
+public class BoardServiceImpl implements BoardService {
 	SqlSession sqlSession = DetaSource.getInstance().openSession(true);
 	BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-	
+
 	@Override
-	public List<BoardVO> BoardList() {
-		return mapper.boardList();
+	public List<BoardVO> BoardList(int page) {
+		return mapper.boardListPaging(page);
+	}
+
+	@Override
+	public int boardTotal() {
+		return mapper.getTotalCnt();
 	}
 
 	@Override
 	public BoardVO getBoard(int bno) {
-		return null;
+		return mapper.selectBoard(bno);
 	}
 
 	@Override
 	public boolean addBoard(BoardVO bvo) {
-		return false;
+		return mapper.insertBoard(bvo) == 1;
 	}
 
 	@Override
 	public boolean editBoard(BoardVO bvo) {
-		return false;
+		return mapper.updateBoard(bvo) == 1;
 	}
 
 	@Override
