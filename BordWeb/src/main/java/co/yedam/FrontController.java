@@ -18,6 +18,8 @@ import co.yedam.web.BoardList;
 import co.yedam.web.GetBoard;
 import co.yedam.web.MainControl;
 import co.yedam.web.ProductControl;
+import co.yedam.web.RemoveBoard;
+import co.yedam.web.RemoveForm;
 import co.yedam.web.StudentForm;
 
 // front -> 요청url(*.do) - 실행컨트롤 매칭.
@@ -46,6 +48,10 @@ public class FrontController extends HttpServlet {
 		map.put("/getBoard.do", new GetBoard());
 		map.put("/addForm.do", new AddFrom());
 		map.put("/addBodard.do", new AddBodard());
+		//
+		map.put("/removeForm.do", new RemoveForm());
+		map.put("/removeBoard.do", new RemoveBoard());
+		
 	}
 	
 	@Override
