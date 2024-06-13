@@ -23,7 +23,7 @@ public class GetBoard implements Control {
 		BoardService svc = new BoardServiceImpl();
 		BoardVO brd = svc.getBoard(Integer.parseInt(bno));
 		
-		req.setAttribute("page", page);;
+		req.setAttribute("page", page);
 		req.setAttribute("board", brd);
 		
 		req.getRequestDispatcher("WEB-INF/view/board.jsp").forward(req, resp);

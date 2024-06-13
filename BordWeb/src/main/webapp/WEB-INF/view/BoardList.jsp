@@ -3,9 +3,10 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!--  "boardList"에 담긴 값을 읽어서 반복처리. -->
 
-<%@include file="../public/header.jsp"%>
+<jsp:include page="../public/header.jsp" />
 <style>
 .center {
 	text-align: center;
@@ -36,13 +37,8 @@
 }
 </style>
 
-<%
-// request 는 jsp 내장객체.
-List<BoardVO> list = (List<BoardVO>) request.getAttribute("boardList");
-PageDTO pageDTO = (PageDTO) request.getAttribute("paging");
-%>
 
-<p><%=pageDTO.toString() %></p>
+
 <h3>게시글 목록</h3>
 <table class="table">
 	<thead>
@@ -54,42 +50,52 @@ PageDTO pageDTO = (PageDTO) request.getAttribute("paging");
 		</tr>
 	</thead>
 	<tbody>
-		<%
-		for (BoardVO vo : list) {
-		%>
-		<tr >
-			<td><%=vo.getBoardNo()%></td>
-			<td onclick="location.href='getBoard.do?bno=<%=vo.getBoardNo() %>&page=<%=pageDTO.getPage()%>'" style="cursor:pointer;"><%=vo.getTitle()%></td>
-			<td><%=vo.getWriter()%></td>
-			<td><%=vo.getClickCnt()%></td>
-		</tr>  
-		<% } %>
+		<c:forEach var="vo" items="${boardList}">
+			<tr>
+				<td>${vo.boardNo }</td>
+				<td onclick="location.href='getBoard.do?bno=${vo.boardNo }&page=${paging.page}'"
+					style="cursor: pointer;">${vo.title }</td>
+				<td>${vo.writer }</td>
+				<td>${vo.clickCnt }</td>
+			</tr>
+		</c:forEach>
 	</tbody>
 
 </table>
-<button type="button" onclick="location.href='addForm.do'" >게시글작성</button>
+
+<c:if test="${ logId != null}">
+	<button type="button" onclick="location.href='addForm.do'">게시글작성</button>
+</c:if>
+
 <!-- paging -->
 <div class="center">
-  <div class="pagination">
-  
-  <%if (pageDTO.isPrev()){ %>
-  <a href="boardList.do?page=<%=pageDTO.getStartPage() - 1 %>">&laquo;</a>
-  <%} %>
-  
-  <%for(int p = pageDTO.getStartPage(); p <= pageDTO.getEndPage(); p++) {%>
-  <%if (p == pageDTO.getPage()) {%>
-  <a href="boardList.do?page=<%=p %>" class = "active"><%=p %></a>
-  <%}else{ %>
-  <a href="boardList.do?page=<%=p %>"><%=p %></a>
-  <%}} %>
-  
-  <%if(pageDTO.isNext()) {%>
-  <a href="boardList.do?page=<%=pageDTO.getEndPage() + 1 %>">&raquo;</a>
-  <%} %>
-  </div>
+	<div class="pagination">
+
+
+		<c:if test="${paging.prev }">
+			<a href="boardList.do?page=${paging.startPage -1}">&laquo;</a>
+		</c:if>
+
+
+		<c:forEach var="p" begin="${paging.startPage }" end="${paging.endPage }" step="1">
+			<c:choose>
+				<c:when test="${p == paging.page}">
+					<a href="boardList.do?page=${p }" class="active">${p }</a>
+				</c:when>
+				<c:otherwise>
+					<a href="boardList.do?page=${p }">${p }</a>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+
+		<c:if test="${paging.next }">
+			<a href="boardList.do?page=${paging.endPage +1}">&raquo;</a>
+		</c:if>
+
+	</div>
 </div>
 
 
 
 
-<%@include file="../public/footer.jsp"%>
+<jsp:include page="../public/footer.jsp" />

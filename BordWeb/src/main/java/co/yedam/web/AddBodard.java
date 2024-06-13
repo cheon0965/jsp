@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import co.yedam.common.Control;
 import co.yedam.service.BoardService;
@@ -21,15 +22,17 @@ public class AddBodard implements Control {
 		// TODO Auto-generated method stub
 		
 		String title = req.getParameter("title");
-		String writer = req.getParameter("writer");
 		String content = req.getParameter("content");
 		
+		HttpSession session = req.getSession();
+	    String logId = (String) session.getAttribute("logId");
+	    
 		BoardService svc = new BoardServiceImpl();
 		
 		BoardVO board = new BoardVO();
 		
 		board.setTitle(title);
-		board.setWriter(writer);
+		board.setWriter(logId);
 		board.setContent(content);
 		
 		if(svc.addBoard(board)) {

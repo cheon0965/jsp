@@ -8,7 +8,7 @@
 		select *
 		from board_tbl
 		order by
-		board_no
+		board_no DESC
 	</select>
 
 	<select id="boardListPaging" parameterType="int"
@@ -17,7 +17,7 @@
 		from(select ROWNUM rn, a.*
 		from (select *
 		from board_tbl
-		order by board_no) a
+		order by board_no DESC) a
 		     <![CDATA[
 		     where ROWNUM <= (#{page} * 5) ) b
 		     ]]>
@@ -47,16 +47,29 @@
 	</insert>
 
 	<update id="updateBoard" parameterType="co.yedam.vo.BoardVO">
-		update into board_tbl (board_no, title, writer, content)
-		 values(board_seq.nextval,#{title},#{writer},#{content})
-		where board_no = #{boardNo}
+	    update board_tbl 
+        set title = #{title},  content = #{content}
+        where board_no = #{boardNo}
 	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+	   DELETE board_tbl
+       where board_no = #{boardNo}
+	</delete>
+	
 
 	<select id="getBoard" parameterType="string"
 		resultType="co.yedam.vo.BoardVO">
 		select *
 		from tbl_student
 		where std_no = #{stdNo}
+	</select>
+	
+	<select id="selectMember" resultType="int">
+	    select count(1)
+		from member_tbl
+		where user_id = #{id}
+		and   user_pw = #{pw}
 	</select>
 
 

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,17 +16,27 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <body>
+    <%
+     String logId = (String) session.getAttribute("logId");
+     
+    %>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
             <div class="border-end bg-white" id="sidebar-wrapper">
+                <%if(logId == null) {%>
                 <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
+                <%}else{ %>
+                <div class="sidebar-heading border-bottom bg-light">Start Bootstrap(<%=logId %>)</div>
+                <%} %>
                 <div class="list-group list-group-flush">
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="main.do">메인페이지</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="studentForm.do">학생정보등록화면</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="boardList.do">게시글목록</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="boardList.do">게시글</a>
+                    <%if(logId == null) {%>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="loginForm.do">로그인</a>
+                    <%}else{ %>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="logout.do">로그아웃</a>
+                    <%} %>
                 </div>
             </div>
             <!-- Page content wrapper-->

@@ -5,10 +5,11 @@
 <%@include file="../public/header.jsp"%>
 <%
 BoardVO board = (BoardVO) request.getAttribute("board");
+
 %>
 
 
-<form action="removeBoard.do">
+<form action="removeBoard.do?bno=<%=board.getBoardNo()%>" method="post">
 	<table class="table">
 		<tr>
 			<th width="100">글번호</th>
@@ -22,7 +23,7 @@ BoardVO board = (BoardVO) request.getAttribute("board");
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td colspan="3"><textarea cols="80" rows="3"><%=board.getContent()%></textarea></td>
+			<td colspan="3"><textarea cols="80" rows="3" name="dd"><%=board.getContent()%></textarea></td>
 		</tr>
 		<tr>
 			<th>작성자</th>
@@ -34,9 +35,11 @@ BoardVO board = (BoardVO) request.getAttribute("board");
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="submit"
-				class="btn btn-danger" values="삭제"></td>
+				class="btn btn-danger" value="삭제"></td>
 		</tr>
 	</table>
 </form>
+
+
 
 <%@include file="../public/footer.jsp"%>

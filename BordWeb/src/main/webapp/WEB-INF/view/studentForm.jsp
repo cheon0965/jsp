@@ -17,7 +17,7 @@ if(msg != null){
 <form action="addStudent.do">
 	<table class="table">
 		<tr>
-			<th>학생번호</th>s
+			<th>학생번호</th>
 			<td><input type="text" name="sno"></td>
 		</tr>
 		<tr>

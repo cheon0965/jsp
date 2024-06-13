@@ -2,38 +2,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@include file="../public/header.jsp"%>
-<%
-BoardVO board = (BoardVO) request.getAttribute("board");
-String nowpage = (String) request.getAttribute("page");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<p><%=board%></p>
+
+<jsp:include page="../public/header.jsp" />
+
 <table class="table">
 	<tr>
 		<th width="100">글번호</th>
-		<td width="500"><%=board.getBoardNo()%></td>
+		<td width="500"><c:out value="${board.boardNo}" /></td>
 		<th width="100">조회수</th>
-		<td><%=board.getClickCnt()%></td>
+		<td><c:out value="${board.clickCnt}" /></td>
 	</tr>
 	<tr>
 		<th>제목</th>
-		<td><%=board.getTitle()%></td>
+		<td><c:out value="${board.title}" /></td>
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td colspan="3"><textarea cols="80" rows="3"><%=board.getContent()%></textarea></td>
+		<td colspan="3"><textarea cols="80" rows="3"><c:out value="${board.content}" /></textarea></td>
 	</tr>
 	<tr>
 		<th>작성자</th>
-		<td><%=board.getWriter()%></td>
+		<td><c:out value="${board.writer}" /></td>
 	</tr>
 	<tr>
 		<th>작성일시</th>
-		<td><%=board.getCreationDate()%></td>
+		<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${board.creationDate }" /></td>
+		
+	</tr>
+	<tr>
+	<c:choose>
+		<c:when test="${!empty logId && logId == board.writer}">
+			<td><a href="removeForm.do?bno=${board.boardNo}"><input
+					type="button" class="btn btn-danger" value="삭제"></a></td>
+			<td><a href="modifyForm.do?bno=${board.boardNo}"><input
+					type="button" class="btn btn-danger" value="수정"></a></td>
+		</c:when>
+		<c:otherwise>
+			<td><a><input type="button" class="btn btn-danger"
+					value="삭제"></a></td>
+			<td><a><input type="button" class="btn btn-danger"
+					value="수정"></a></td>
+		</c:otherwise>
+	</c:choose>
+
 	</tr>
 </table>
-<a href="boardList.do?page=<%=nowpage%>">목록으로 이동하기</a>
-<a href="removeForm.do?bno=<%=board.getBoardNo()%>">삭제</a>
+<a href="boardList.do?page=${page }">목록으로 이동하기</a>
 
-<%@include file="../public/footer.jsp"%>
+<script>
+	document.querySelector('button.btn-warning').addEventListener('click',
+			function(e) {
+				// 삭제화면이동일 경우에는 removeForm.do
+				// 수정화면이동일 경우에는 action="modifyForm.do";
+				document.forms.myFrm.action = "modifyForm.do";
+				document.forms.myFrm.submit();
+			});
+	// 삭제화면이동일 경우에는 removeForm.do
+	// 수정화면이동일 경우에는 action="modifyForm.do";
+	// document.forms.myFrm.action = "modifyForm.do";
+	// document.forms.myFrm.submit();
+</script>
+
+
+<jsp:include page="../public/footer.jsp" />

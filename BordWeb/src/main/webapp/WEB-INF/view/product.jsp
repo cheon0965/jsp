@@ -11,22 +11,19 @@
 	<!-- webapp/WEB-INF/view/product.jsp -->
 	<h3>product페이지</h3>
 
-	<%
-	Student student = (Student) request.getAttribute("student");
-	%>
 
 	<table border="2">
 		<tr>
-			<td>학생번호</td><td><%=student.getStdNo() %></td>
+			<td>학생번호</td><td>${student.stdNo}</td>
 		</tr>
 		<tr>
-			<td>학생이름</td><td><%=student.getStdName() %></td>
+			<td>학생이름</td><td>${student.stdName}</td>
 		</tr>
 		<tr>
-			<td>전화번호</td><td><%=student.getPhone() %></td>
+			<td>전화번호</td><td>${student.phone}</td>
 		</tr>
 		<tr>
-			<td>학생이름</td><td><%=student.getBldType() %></td>
+			<td>학생이름</td><td>${student.bldType}</td>
 		</tr>
 	</table>
 	

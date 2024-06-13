@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">location.href = "main.do"</script>
+
+<jsp:forward page="main.do"></jsp:forward>
 </head>
 <body>
 	<h3>Hello, world</h3>

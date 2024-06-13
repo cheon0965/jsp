@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@include file="../public/header.jsp"%>
+<jsp:include page="../public/header.jsp" />
 
 <form action="addBodard.do">
 
@@ -12,7 +12,7 @@
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td><input type="text" name="writer" style="width: 50%"></td>
+			<td>${logId }</td>
 		</tr>
 		<tr>
 			<th>내용</th>
@@ -21,11 +21,11 @@
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="submit"
-				class="btn btn-danger" values="저장"></td>
+				class="btn btn-danger" value="저장"></td>
 		</tr>
 	</table>
 
 </form>
 
 
-<%@include file="../public/footer.jsp"%>
+<jsp:include page="../public/footer.jsp" />

@@ -16,11 +16,16 @@ import co.yedam.web.AddFrom;
 import co.yedam.web.AddStudent;
 import co.yedam.web.BoardList;
 import co.yedam.web.GetBoard;
+import co.yedam.web.LoginForm;
+import co.yedam.web.Logout;
 import co.yedam.web.MainControl;
+import co.yedam.web.ModifyBoard;
+import co.yedam.web.ModifyForm;
 import co.yedam.web.ProductControl;
 import co.yedam.web.RemoveBoard;
 import co.yedam.web.RemoveForm;
 import co.yedam.web.StudentForm;
+import co.yedam.web.Login;
 
 // front -> 요청url(*.do) - 실행컨트롤 매칭.
 // main.do -> FrontController -> /WEB-INF/public/main.jsp
@@ -51,6 +56,15 @@ public class FrontController extends HttpServlet {
 		//
 		map.put("/removeForm.do", new RemoveForm());
 		map.put("/removeBoard.do", new RemoveBoard());
+		//
+		map.put("/modifyForm.do", new ModifyForm());
+		map.put("/modifyBoard.do", new ModifyBoard());
+		// 로그인
+		map.put("/loginForm.do", new LoginForm());
+		map.put("/login.do", new Login());
+		// 로그아웃
+		map.put("/logout.do", new Logout());
+		
 		
 	}
 	
