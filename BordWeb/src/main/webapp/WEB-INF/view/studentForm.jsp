@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="../public/header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<jsp:include page="../public/header.jsp" />
 <h3>학생등록화면</h3>
-<%
-String msg = (String) request.getAttribute("massage");
-%>
-<%
-if(msg != null){
-%>
-<p> <%=msg %> </p>
-<%
-}
-%>
+
+
+<c:if test="${massage != null }">
+	<p>${massage}</p>
+
+</c:if>
+
 
 
 <form action="addStudent.do">
@@ -40,4 +39,4 @@ if(msg != null){
 
 </form>
 
-<%@include file="../public/footer.jsp"%>
+<jsp:include page="../public/footer.jsp" />

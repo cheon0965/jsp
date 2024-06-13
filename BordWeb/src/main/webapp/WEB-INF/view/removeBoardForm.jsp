@@ -2,36 +2,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<%@include file="../public/header.jsp"%>
-<%
-BoardVO board = (BoardVO) request.getAttribute("board");
+<jsp:include page="../public/header.jsp" />
 
-%>
-
-
-<form action="removeBoard.do?bno=<%=board.getBoardNo()%>" method="post">
+<form action="removeBoard.do?bno=${board.boardNo}" method="post">
 	<table class="table">
 		<tr>
 			<th width="100">글번호</th>
-			<td width="500"><%=board.getBoardNo()%></td>
+			<td width="500">${board.boardNo}</td>
 			<th width="100">조회수</th>
-			<td><%=board.getClickCnt()%></td>
+			<td>${board.clickCnt}</td>
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td><%=board.getTitle()%></td>
+			<td>${board.title}</td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td colspan="3"><textarea cols="80" rows="3" name="dd"><%=board.getContent()%></textarea></td>
+			<td colspan="3"><textarea cols="80" rows="3" name="dd">${board.content}</textarea></td>
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td><%=board.getWriter()%></td>
+			<td>${board.writer}</td>
 		</tr>
 		<tr>
 			<th>작성일시</th>
-			<td><%=board.getCreationDate()%></td>
+			<td>{board.creationDate}</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="submit"
@@ -40,6 +35,4 @@ BoardVO board = (BoardVO) request.getAttribute("board");
 	</table>
 </form>
 
-
-
-<%@include file="../public/footer.jsp"%>
+<jsp:include page="../public/footer.jsp" />
