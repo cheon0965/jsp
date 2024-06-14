@@ -41,11 +41,9 @@ public class AppTest {
 		
 //		List<Student> list = sqlSession.selectList("co.yedam.mapper.StudentMapper.selectBlog");
 		
-		List<BoardVO> list = mapper.boardListPaging(1);
-				
-		for(BoardVO std1 : list) {
-			System.out.println(std1.toString());
-		}
+		SearchVO search = new SearchVO(1, "T", "java");
+		mapper.boardListPaging(search).forEach(bvo -> System.out.println(bvo));
+		
 		
 		
 		

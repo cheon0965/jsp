@@ -3,8 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix = "myTag" %>
 
-<jsp:include page="../public/header.jsp" />
-
 
 <h3>로그인화면(loginForm.jsp)</h3>
 <myTag:line/>
@@ -28,5 +26,3 @@
 <c:forEach var="i" begin="1" end="10" step="2">
 <p>${i }</p>
 </c:forEach>
-
-<jsp:include page="../public/footer.jsp" />

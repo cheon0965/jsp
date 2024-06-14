@@ -41,7 +41,7 @@ public class AddBodard implements Control {
 		}else {
 			System.out.println("등록실패");
 			req.setAttribute("massage", "처리중 오류가 발생...");
-			req.getRequestDispatcher("WEB-INF/view/boradForm.jsp").forward(req, resp);
+			req.getRequestDispatcher("board/boradForm.tiles").forward(req, resp);
 		}
 		
 	}

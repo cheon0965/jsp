@@ -4,10 +4,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<jsp:include page="../public/header.jsp" />
-
 <form action="modifyBoard.do" method="post">
 	<input type="hidden" name="bno" value="${board.boardNo}">
+	<input type="hidden" name="page" value="${search.page}">
+	<input type="hidden" name="searchCondition" value="${search.searchCondition}">
+	<input type="hidden" name="keyword" value="${search.keyword}">
 	<table class="table">
 		<tr>
 			<th width="100">글번호</th>
@@ -39,5 +40,3 @@
 </form>
 
 
-
-<jsp:include page="../public/footer.jsp" />

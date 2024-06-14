@@ -4,9 +4,19 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	id="WebApp_ID" version="4.0">
 	<display-name>BordWeb</display-name>
-	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
-	</welcome-file-list>
+
+	<!-- Tiles listener 매칭 -->
+	<listener>
+		<listener-class>org.apache.tiles.extras.complete.CompleteAutoloadTilesListener</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>Tiles Dispatch Servlet</servlet-name>
+		<servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Tiles Dispatch Servlet</servlet-name>
+		<url-pattern>*.tiles</url-pattern>
+	</servlet-mapping>
 
 	<!-- 서블릿 매칭 -->
 	<servlet>
@@ -17,4 +27,9 @@
 		<servlet-name>front</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 메인화면 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>

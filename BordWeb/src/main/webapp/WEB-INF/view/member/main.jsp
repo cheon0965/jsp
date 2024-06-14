@@ -5,7 +5,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
 	
-<jsp:include page="../public/header.jsp" />
 
 	<h3>main 페이지</h3>
 
@@ -23,6 +22,5 @@
 	</c:forEach>
 	</ul>
 	
-<jsp:include page="../public/footer.jsp" />
 	
 	

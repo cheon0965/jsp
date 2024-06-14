@@ -1,10 +1,11 @@
 <%@page import="co.yedam.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<jsp:include page="../public/header.jsp" />
 
-<form action="removeBoard.do?bno=${board.boardNo}" method="post">
+<form action="removeBoard.do?bno=${board.boardNo}&page=${search.page}&searchCondition=${search.searchCondition}&keyword=${search.keyword}" method="post">
 	<table class="table">
 		<tr>
 			<th width="100">글번호</th>
@@ -26,7 +27,7 @@
 		</tr>
 		<tr>
 			<th>작성일시</th>
-			<td>{board.creationDate}</td>
+			<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${board.creationDate }" /></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="submit"
@@ -34,5 +35,3 @@
 		</tr>
 	</table>
 </form>
-
-<jsp:include page="../public/footer.jsp" />

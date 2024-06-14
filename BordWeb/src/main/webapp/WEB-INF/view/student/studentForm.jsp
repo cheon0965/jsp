@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<jsp:include page="../public/header.jsp" />
 <h3>학생등록화면</h3>
 
 
@@ -38,5 +37,3 @@
 	</table>
 
 </form>
-
-<jsp:include page="../public/footer.jsp" />

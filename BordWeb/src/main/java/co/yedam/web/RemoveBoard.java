@@ -16,16 +16,19 @@ public class RemoveBoard implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
+		String sc = req.getParameter("searchCondition");
+		String kw = req.getParameter("keyword");
 		
 		BoardService svc = new BoardServiceImpl();
 		
 		if(svc.removeBoard(Integer.parseInt(bno))) {
 			System.out.println("정상삭제...");
-			resp.sendRedirect("boardList.do");
+			resp.sendRedirect("boardList.do?page="+page+"&searchCondition="+sc+"&keyword="+kw);
 		}else {
 			System.out.println("삭제실패");
 			req.setAttribute("massage", "처리중 오류가 발생...");
-			req.getRequestDispatcher("WEB-INF/view/boradForm.jsp").forward(req, resp);
+			req.getRequestDispatcher("board/boradForm.tiles").forward(req, resp);
 		}
 	}
 

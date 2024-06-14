@@ -11,23 +11,58 @@
 		board_no DESC
 	</select>
 
-	<select id="boardListPaging" parameterType="int"
+	<select id="boardListPaging" parameterType="co.yedam.common.SearchVO"
 		resultType="co.yedam.vo.BoardVO">
+		
 		SELECT b.*
-		from(select ROWNUM rn, a.*
-		from (select *
-		from board_tbl
-		order by board_no DESC) a
-		     <![CDATA[
-		     where ROWNUM <= (#{page} * 5) ) b
-		     ]]>
-		where b.rn > (#{page} -1) * 5
-
+        from(select ROWNUM rn, a.*
+             from (select *
+		           from board_tbl
+                   <where>
+	                  <choose >
+	                 	 <when test="searchCondition == 'T'.toString()">
+	                   title like '%'||#{keyword}||'%'
+	                 	 </when>
+	                 	 <when test="searchCondition == 'W'.toString()">
+	                      writer LIKE '%'||#{keyword}||'%'
+	                 	 </when>
+	                 	 <when test="searchCondition == 'TW'.toString()">
+	                 	   title like '%'||#{keyword}||'%'
+	                       or writer LIKE '%'||#{keyword}||'%'
+	                 	 </when>
+	                 	 <otherwise>
+	                 	   1 = 1
+	                 	 </otherwise>
+	                  </choose>
+                   </where>
+		           order by board_no DESC) a
+		            <![CDATA[
+             where ROWNUM <= (#{page} * 5) ) b
+             		     ]]>
+        where b.rn > (#{page} -1) * 5
+        
 	</select>
 
-	<select id="getTotalCnt" resultType="int">
+	<select id="getTotalCnt" parameterType="co.yedam.common.SearchVO" resultType="int">
 		select count(1)
 		from board_tbl
+		<where>
+         <choose >
+        	 <when test="searchCondition == 'T'.toString()">
+          title like '%'||#{keyword}||'%'
+        	 </when>
+        	 <when test="searchCondition == 'W'.toString()">
+             writer LIKE '%'||#{keyword}||'%'
+        	 </when>
+        	 <when test="searchCondition == 'TW'.toString()">
+        	   title like '%'||#{keyword}||'%'
+              or writer LIKE '%'||#{keyword}||'%'
+        	 </when>
+        	 <otherwise>
+        	   1 = 1
+        	 </otherwise>
+         </choose>
+         </where>
 	</select>
 	
 	<select id="selectBoard" resultType="co.yedam.vo.BoardVO" parameterType="int">
@@ -48,7 +83,7 @@
 
 	<update id="updateBoard" parameterType="co.yedam.vo.BoardVO">
 	    update board_tbl 
-        set title = #{title},  content = #{content}
+        set title = #{title},  content = #{content}, click_cnt = #{clickCnt}
         where board_no = #{boardNo}
 	</update>
 	

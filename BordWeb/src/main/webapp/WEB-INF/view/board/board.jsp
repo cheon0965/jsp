@@ -6,7 +6,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
-<jsp:include page="../public/header.jsp" />
 
 <table class="table">
 	<tr>
@@ -35,22 +34,22 @@
 	<tr>
 	<c:choose>
 		<c:when test="${!empty logId && logId == board.writer}">
-			<td><a href="removeForm.do?bno=${board.boardNo}"><input
+			<td><a href="removeForm.do?bno=${board.boardNo}&page=${page}&searchCondition=${search.searchCondition}&keyword=${search.keyword}"><input
 					type="button" class="btn btn-danger" value="삭제"></a></td>
-			<td><a href="modifyForm.do?bno=${board.boardNo}"><input
+			<td><a href="modifyForm.do?bno=${board.boardNo}&page=${page}&searchCondition=${search.searchCondition}&keyword=${search.keyword}"><input
 					type="button" class="btn btn-danger" value="수정"></a></td>
 		</c:when>
 		<c:otherwise>
 			<td><a><input type="button" class="btn btn-danger"
 					value="삭제"></a></td>
-			<td><a><input type="button" class="btn btn-danger"
+			<td><a><input type="button" class="btn btn-warning"
 					value="수정"></a></td>
 		</c:otherwise>
 	</c:choose>
 
 	</tr>
 </table>
-<a href="boardList.do?page=${page }">목록으로 이동하기</a>
+<a href="boardList.do?page=${page }&searchCondition=${search.searchCondition}&keyword=${search.keyword}">목록으로 이동하기</a>
 
 <script>
 	document.querySelector('button.btn-warning').addEventListener('click',
@@ -65,6 +64,3 @@
 	// document.forms.myFrm.action = "modifyForm.do";
 	// document.forms.myFrm.submit();
 </script>
-
-
-<jsp:include page="../public/footer.jsp" />
