@@ -9,6 +9,7 @@ import co.yedam.common.SearchVO;
 import co.yedam.mapper.BoardMapper;
 import co.yedam.mapper.StudentMapper;
 import co.yedam.vo.BoardVO;
+import co.yedam.vo.MemberVO;
 
 public class BoardServiceImpl implements BoardService {
 	SqlSession sqlSession = DetaSource.getInstance().openSession(true);
@@ -45,9 +46,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean checkMember(String id, String pw) {
+	public MemberVO checkMember(String id, String pw) {
 		// TODO Auto-generated method stub
-		return mapper.selectMember(id, pw) == 1;
+		return mapper.selectMember(id, pw) ;
 	}
 
 }
