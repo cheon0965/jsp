@@ -2,7 +2,7 @@
  * dom1.js
  */
 
- document.getElementById("fruit").style.display ="none";
+ //document.getElementById("fruit").style.display ="none";
  document.querySelector("table.table tr:nth-of-type(5)").setAttribute("align", "center");
 
  // 페이지 로딩시 회원3명 출력
