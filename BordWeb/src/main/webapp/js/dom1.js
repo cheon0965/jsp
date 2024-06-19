@@ -97,7 +97,7 @@
 // 이벤트 핸들러
  function removeTrElement(e){
     e.stopPropagation();
-    
+        
     let targetTr = document.querySelectorAll("#memberList  tr");
     let cnt1 = 0;
     for(let tr of targetTr){

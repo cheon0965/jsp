@@ -24,6 +24,7 @@
 		<a class="list-group-item list-group-item-action list-group-item-light p-3" href="studentForm.do">학생정보등록화면</a>
 		<a class="list-group-item list-group-item-action list-group-item-light p-3" href="boardList.do">게시글</a>
 		<a class="list-group-item list-group-item-action list-group-item-light p-3" href="script.do">자바스크립트</a>
+		<a class="list-group-item list-group-item-action list-group-item-light p-3" href="ajax.do">Ajax연습</a>
 
 
 

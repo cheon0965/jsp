@@ -14,11 +14,16 @@ import co.yedam.common.Control;
 import co.yedam.web.AddBodard;
 import co.yedam.web.AddFrom;
 import co.yedam.web.AddStudent;
+import co.yedam.web.AjaxForm;
 import co.yedam.web.BoardList;
+import co.yedam.web.CheckIdAjax;
+import co.yedam.web.DeleteAjax;
 import co.yedam.web.GetBoard;
 import co.yedam.web.LoginForm;
 import co.yedam.web.Logout;
 import co.yedam.web.MainControl;
+import co.yedam.web.MambersAddAjax;
+import co.yedam.web.MambersAjax;
 import co.yedam.web.MemberLis;
 import co.yedam.web.ModifyBoard;
 import co.yedam.web.ModifyForm;
@@ -27,6 +32,7 @@ import co.yedam.web.RemoveBoard;
 import co.yedam.web.RemoveForm;
 import co.yedam.web.ScriptForm;
 import co.yedam.web.StudentForm;
+import co.yedam.web.UpdateAjax;
 import co.yedam.web.Login;
 
 // front -> 요청url(*.do) - 실행컨트롤 매칭.
@@ -34,12 +40,11 @@ import co.yedam.web.Login;
 // 객체생성 -> init -> service -> destroy
 public class FrontController extends HttpServlet {
 	private Map<String, Control> map; // key: url, value: control
-	
+
 	public FrontController() {
 		map = new HashMap<>();
 	}
-	
-	
+
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/main.do", new MainControl());
@@ -47,10 +52,10 @@ public class FrontController extends HttpServlet {
 		// 학생등록화면 studentFrom.do
 		map.put("/studentForm.do", new StudentForm()); // 등록화면
 		map.put("/addStudent.do", new AddStudent()); // 정보db에 저장.
-		
+
 		// 게시글 목록.
 		map.put("/boardList.do", new BoardList());
-		
+
 		// 상세화면
 		map.put("/getBoard.do", new GetBoard());
 		map.put("/addForm.do", new AddFrom());
@@ -68,13 +73,20 @@ public class FrontController extends HttpServlet {
 		map.put("/logout.do", new Logout());
 		// 회원목록(관리자용)
 		map.put("/memberList.do", new MemberLis());
-		
+
 		// 자바스크립트 연습용 페이지
 		map.put("/script.do", new ScriptForm());
-		
-		
+
+		// Ajax 연습용 페이지
+		map.put("/ajax.do", new AjaxForm());
+		map.put("/mambersAjax.do", new MambersAjax());
+		map.put("/addAjax.do", new MambersAddAjax());
+		map.put("/checkIdAjax.do", new CheckIdAjax());
+		map.put("/deleteAjax.do", new DeleteAjax());
+		map.put("/updateAjax.do", new UpdateAjax());
+
 	}
-	
+
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String uri = req.getRequestURI(); // http://localhost/BoardWeb/main.do
@@ -83,7 +95,7 @@ public class FrontController extends HttpServlet {
 //		System.out.println("context: " + context);
 		String page = uri.substring(context.length());
 //		System.out.println("page: " + page);
-		
+
 		Control result = map.get(page);
 		result.exec(req, resp);
 		System.out.println("result: " + result);
