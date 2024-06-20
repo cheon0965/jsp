@@ -4,7 +4,30 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<style>
+div.reply {
+	margin: 0;
+}
 
+div.reply div {
+	margin: auto;
+}
+
+div.reply ul {
+	list-style-type: none;
+	margin-top: 3px;
+	padding: 0;
+}
+
+div.reply li {
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+div.reply span {
+	display: inline-block;
+}
+</style>
 
 
 <table class="table">
@@ -20,7 +43,8 @@
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td colspan="3"><textarea cols="80" rows="3"><c:out value="${board.content}" /></textarea></td>
+		<td colspan="3"><textarea cols="80" rows="3"><c:out
+					value="${board.content}" /></textarea></td>
 	</tr>
 	<tr>
 		<th>작성자</th>
@@ -28,39 +52,73 @@
 	</tr>
 	<tr>
 		<th>작성일시</th>
-		<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${board.creationDate }" /></td>
-		
+		<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss"
+				value="${board.creationDate }" /></td>
+
 	</tr>
 	<tr>
-	<c:choose>
-		<c:when test="${!empty logId && logId == board.writer}">
-			<td><a href="removeForm.do?bno=${board.boardNo}&page=${page}&searchCondition=${search.searchCondition}&keyword=${search.keyword}"><input
-					type="button" class="btn btn-danger" value="삭제"></a></td>
-			<td><a href="modifyForm.do?bno=${board.boardNo}&page=${page}&searchCondition=${search.searchCondition}&keyword=${search.keyword}"><input
-					type="button" class="btn btn-danger" value="수정"></a></td>
-		</c:when>
-		<c:otherwise>
-			<td><a><input type="button" class="btn btn-danger"
-					value="삭제"></a></td>
-			<td><a><input type="button" class="btn btn-warning"
-					value="수정"></a></td>
-		</c:otherwise>
-	</c:choose>
+		<c:choose>
+			<c:when test="${!empty logId && logId == board.writer}">
+				<td><a
+					href="removeForm.do?bno=${board.boardNo}&page=${page}&searchCondition=${search.searchCondition}&keyword=${search.keyword}"><input
+						type="button" class="btn btn-danger" value="삭제"></a></td>
+				<td><a
+					href="modifyForm.do?bno=${board.boardNo}&page=${page}&searchCondition=${search.searchCondition}&keyword=${search.keyword}"><input
+						type="button" class="btn btn-danger" value="수정"></a></td>
+			</c:when>
+			<c:otherwise>
+				<td><a><input type="button" class="btn btn-danger"
+						value="삭제"></a></td>
+				<td><a><input type="button" class="btn btn-warning"
+						value="수정"></a></td>
+			</c:otherwise>
+		</c:choose>
 
 	</tr>
 </table>
-<a href="boardList.do?page=${page }&searchCondition=${search.searchCondition}&keyword=${search.keyword}">목록으로 이동하기</a>
 
+<!-- 댓글관련 -->
+<div class="container reply">
+
+	<div class="header">
+		<input class="col-sm-8" id="reply">
+		<button class="col-sm-3" id="addReply">등록</button>
+	</div>
+
+	<div class="content">
+		<ul>
+			<li><span class="col-sm-1">글번호</span> <span class="col-sm-4">글내용</span>
+				<span class="col-sm-2">작성자</span> <span class="col-sm-3">작성일시</span><span
+				class="col-sm-1">삭제</span></li>
+			<li><hr></li>
+			<li style="display: none;"><span class="col-sm-1">글번호</span> <span
+				class="col-sm-4">글내용</span> <span class="col-sm-2">작성자</span> <span
+				class="col-sm-3">작성일시</span><span class="col-sm-1"><button
+						onclick="deleteRow(event)">삭제</button></span></li>
+		</ul>
+	</div>
+</div>
+<!-- 댓글관련 -->
+
+<a
+	href="boardList.do?page=${page }&searchCondition=${search.searchCondition}&keyword=${search.keyword}">목록으로
+	이동하기</a>
 <script>
-	document.querySelector('button.btn-warning').addEventListener('click',
-			function(e) {
-				// 삭제화면이동일 경우에는 removeForm.do
-				// 수정화면이동일 경우에는 action="modifyForm.do";
-				document.forms.myFrm.action = "modifyForm.do";
-				document.forms.myFrm.submit();
-			});
+	const bno = "${board.boardNo}";
+	const replyer = "${logId}";
+
+	//document.querySelector('button.btn-warning').addEventListener('click',
+	//function(e) {
+	// 삭제화면이동일 경우에는 removeForm.do
+	// 수정화면이동일 경우에는 action="modifyForm.do";
+	//document.forms.myFrm.action = "modifyForm.do";
+	//document.forms.myFrm.submit();
+	//});
 	// 삭제화면이동일 경우에는 removeForm.do
 	// 수정화면이동일 경우에는 action="modifyForm.do";
 	// document.forms.myFrm.action = "modifyForm.do";
 	// document.forms.myFrm.submit();
 </script>
+
+<script src="js/replyService.js"></script>
+<script src="js/reply.js"></script>

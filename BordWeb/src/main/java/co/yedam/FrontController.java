@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.yedam.common.Control;
 import co.yedam.web.AddBodard;
 import co.yedam.web.AddFrom;
+import co.yedam.web.AddReply;
 import co.yedam.web.AddStudent;
 import co.yedam.web.AjaxForm;
 import co.yedam.web.BoardList;
@@ -30,6 +31,8 @@ import co.yedam.web.ModifyForm;
 import co.yedam.web.ProductControl;
 import co.yedam.web.RemoveBoard;
 import co.yedam.web.RemoveForm;
+import co.yedam.web.RemoveReply;
+import co.yedam.web.ReplyList;
 import co.yedam.web.ScriptForm;
 import co.yedam.web.StudentForm;
 import co.yedam.web.UpdateAjax;
@@ -84,6 +87,12 @@ public class FrontController extends HttpServlet {
 		map.put("/checkIdAjax.do", new CheckIdAjax());
 		map.put("/deleteAjax.do", new DeleteAjax());
 		map.put("/updateAjax.do", new UpdateAjax());
+		
+		// 댓글관련.
+		map.put("/replyListJson.do", new ReplyList());
+		map.put("/removeReply.do", new RemoveReply());
+		map.put("/addReply.do", new AddReply());
+		
 
 	}
 

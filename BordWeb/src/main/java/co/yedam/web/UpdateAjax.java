@@ -20,6 +20,7 @@ public class UpdateAjax implements Control {
 		String name = req.getParameter("name");
 		String pass = req.getParameter("pass");
 		
+		System.out.println(id + "id");
 		MemberVO mvo = new MemberVO();
 		BoardService svc = new BoardServiceImpl();
 		

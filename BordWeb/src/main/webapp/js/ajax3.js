@@ -64,7 +64,7 @@ document.getElementById("modBtn").addEventListener("click",function(){
     // 정상적으로 정보가 업데이트 되면 화면 수정.
     // 수정이 안됬으면 화면수정X.
     const upAjax = new XMLHttpRequest();
-    let url = `updateAjax.do?id=${id}&pass=${pass}&name=${name}}`;
+    let url = `updateAjax.do?id=${id}&pass=${pass}&name=${name}`;
     upAjax.open("get", url);
     upAjax.send();
     upAjax.onload = function(){
