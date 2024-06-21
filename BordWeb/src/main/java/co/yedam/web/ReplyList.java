@@ -23,11 +23,14 @@ public class ReplyList implements Control {
 		resp.setContentType("text/json;charset=UTF-8");
 		
 		String bno = req.getParameter("bno");
+		String page = req.getParameter("page");
+		
+		page = page == null ? "1" : page;
 		
 		// 댓글목록.
 		ReplyService svc = new ReplyServiceImpl();
 		
-		List<ReplyVO> list = svc.replyList(Integer.parseInt(bno));
+		List<ReplyVO> list = svc.replyList(Integer.parseInt(bno), Integer.parseInt(page));
 		
 		Gson gson = new GsonBuilder().setPrettyPrinting().create(); // gson 객체 생성.
 		String json = gson.toJson(list);  // 객체 -> 문자열(json).

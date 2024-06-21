@@ -5,9 +5,9 @@
 
 const svc = {
 	// 목록
-	replyList(bno = 1, successCal){
+	replyList(param = {bno: 1, page: 1}, successCal){
 		const xhtp = new XMLHttpRequest();
-		xhtp.open("get", "replyListJson.do?bno=" + bno);
+		xhtp.open("get", "replyListJson.do?bno=" + param.bno + "&page=" +param.page);
 		xhtp.send();
 		xhtp.onload = successCal;
 	},
@@ -29,6 +29,14 @@ const svc = {
 		deleteAjax.open("get", `removeReply.do?rno=${rno}` );
         deleteAjax.send();
         deleteAjax.onload = successCal;
+	},
+
+	//
+	replyTotalCnt(bno = 1, successCal){
+		const cntAjax = new XMLHttpRequest();
+		cntAjax.open("get", `replyTotalCnt.do?bno=${bno}` );
+        cntAjax.send();
+        cntAjax.onload = successCal;
 	}
 }
  

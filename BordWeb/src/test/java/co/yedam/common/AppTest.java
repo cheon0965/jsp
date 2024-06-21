@@ -62,13 +62,15 @@ public class AppTest {
 //		if(mapper.insertReply(rvo)==1) {
 //			System.out.println("입력성공");
 //		}
-		try {
-			if(mapper.deleteReply(4)==1) {
-				System.out.println("삭제성공");
-			}
-		} catch (Exception e) {
-			System.out.println("예외발생");
-		}
+//		try {
+//			if(mapper.deleteReply(4)==1) {
+//				System.out.println("삭제성공");
+//			}
+//		} catch (Exception e) {
+//			System.out.println("예외발생");
+//		}
+		
+		mapper.selectListPaging(203, 1).forEach(Reply -> System.out.println(Reply));
 		
 				
 	}
