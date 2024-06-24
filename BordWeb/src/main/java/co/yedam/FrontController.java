@@ -13,10 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 import co.yedam.common.Control;
 import co.yedam.web.AddBodard;
 import co.yedam.web.AddFrom;
+import co.yedam.web.AddMember;
+import co.yedam.web.AddMemberForm;
 import co.yedam.web.AddReply;
 import co.yedam.web.AddStudent;
 import co.yedam.web.AjaxForm;
 import co.yedam.web.BoardList;
+import co.yedam.web.CenterChart;
+import co.yedam.web.CenterInfo;
+import co.yedam.web.ChartFrom;
 import co.yedam.web.CheckIdAjax;
 import co.yedam.web.DeleteAjax;
 import co.yedam.web.GetBoard;
@@ -25,6 +30,7 @@ import co.yedam.web.Logout;
 import co.yedam.web.MainControl;
 import co.yedam.web.MambersAddAjax;
 import co.yedam.web.MambersAjax;
+import co.yedam.web.MapForm;
 import co.yedam.web.MemberLis;
 import co.yedam.web.ModifyBoard;
 import co.yedam.web.ModifyForm;
@@ -90,13 +96,30 @@ public class FrontController extends HttpServlet {
 		map.put("/deleteAjax.do", new DeleteAjax());
 		map.put("/updateAjax.do", new UpdateAjax());
 		
+		// 회원가입
+		map.put("/addMemberForm.do", new AddMemberForm());
+		map.put("/addMember.do", new AddMember());
+		
+		
 		// 댓글관련.
 		map.put("/replyListJson.do", new ReplyList());
 		map.put("/removeReply.do", new RemoveReply());
 		map.put("/addReply.do", new AddReply());
 		// 댓글전체건수
 		map.put("/replyTotalCnt.do", new TotalCnt());
+		
+		// 공공데이터.
 		map.put("/publicData.do", new PublicData());
+		
+		// map api 호출.
+		map.put("/map.do", new MapForm());
+		
+		// json문자열 -> DB insert
+		map.put("/centerInfo.do", new CenterInfo());
+		
+		// 시도 차트
+		map.put("/chartFrom.do", new ChartFrom());
+		map.put("/centerChart.do", new CenterChart());
 		
 
 	}

@@ -33,5 +33,7 @@ public interface BoardService {
 	boolean deleteMemberAjax(String id);
 	
 	boolean updateMemberAjax(MemberVO mvo);
+	
+	boolean addMemberImge(MemberVO mvo);
 
 }
