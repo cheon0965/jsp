@@ -40,12 +40,21 @@ public class AddMember implements Control {
 		
 		BoardService svc = new BoardServiceImpl();
 		
-		if(svc.insertMember(mvo)) { // {"retCod":"OK","retMsg":"Success"}
+		try {
+			if(svc.insertMember(mvo)) { // {"retCod":"OK","retMsg":"Success"}
 //			resp.getWriter().print("{\"retCod\":\"OK\",\"retMsg\":\"Success\"}");
-			resp.sendRedirect("memberList.do");
-		}else { // {"retCod":"NG","retMsg":"Fail"}
-			resp.getWriter().print("{\"retCod\":\"NG\",\"retMsg\":\"Fail\"}");
-			
+				if(req.getMethod().equals("POST")) {
+					resp.sendRedirect("memberList.do");	
+				}else if(req.getMethod().equals("PUT")){
+					// {"tetCode": "OK"}
+					resp.getWriter().print("{\"tetCode\": \"OK\"}");
+				}
+			}else { // {"retCod":"NG","retMsg":"Fail"}
+				resp.getWriter().print("{\"tetCode\": \"Fail\"}");				
+			}			
+		} catch (Exception e) {
+			// TODO: handle exception
+			resp.getWriter().print("{\"tetCode\": \"NG\"}");
 		}
 
 	}
