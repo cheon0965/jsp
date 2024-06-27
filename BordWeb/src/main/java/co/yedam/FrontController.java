@@ -25,6 +25,8 @@ import co.yedam.web.ChartFrom;
 import co.yedam.web.CheckIdAjax;
 import co.yedam.web.DeleteAjax;
 import co.yedam.web.GetBoard;
+import co.yedam.web.ImageDownload;
+import co.yedam.web.ImageForm;
 import co.yedam.web.LoginForm;
 import co.yedam.web.Logout;
 import co.yedam.web.MainControl;
@@ -120,6 +122,8 @@ public class FrontController extends HttpServlet {
 		// 시도 차트
 		map.put("/chartFrom.do", new ChartFrom());
 		map.put("/centerChart.do", new CenterChart());
+		map.put("/imageDownload.do", new ImageDownload());
+		map.put("/image.do", new ImageForm());
 		
 
 	}
