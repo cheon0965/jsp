@@ -11,10 +11,10 @@ public interface EmpMapper {
 	public List<EmpVO> selecEmpAllList();
 
 	// 단건조회
-	public EmpVO selectEmpInfo(EmpVO empVo);
+	public EmpVO selectEmpInfo(EmpVO empVO);
 
 	// 등록
-	public int insertEmpInfo(EmpVO empVo);
+	public int insertEmpInfo(EmpVO empVO);
 
 	// 수정
 	public int updateEmpInfo(@Param("id") int empId,@Param("emp") EmpVO empVo);
