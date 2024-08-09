@@ -24,7 +24,7 @@ public class EmpController {
 	
 	// 해당 컨트롤러에서 제공하는 서비스
 	private EmpService empService;
-	
+		
 	@Autowired
 	EmpController(EmpService empService){
 		this.empService = empService;
@@ -40,7 +40,7 @@ public class EmpController {
 		List<EmpVO> list = empService.empList();
 		
 		// 2) 클라이언트에 전달할 데이터 담기
-		model.addAttribute("emps", list);
+		model.addAttribute("emps", list);		
 		
 		return "emp/list"; // 3) 데이터를 출력할 페이지 결정
 		// classpath:/rmplates/  emp/list   .html
@@ -91,18 +91,18 @@ public class EmpController {
 	}	
 	
 	// 수정 - 처리 : AJAX => QueryString
-	@PostMapping("emUpdate")
-	@ResponseBody // AJAX
-	public Map<String, Object> empUpdateAJAXQueryString(EmpVO empVO){
-		return empService.empUpdate(empVO);
-	}
-	
-	// 수정 - 처리 : AJAX => JSON(@RequestBody)
-//	@PostMapping("emUpdate")
+//	@PostMapping("empUpdate")
 //	@ResponseBody // AJAX
-//	public Map<String, Object> empUpdateAJAXJSON(@RequestBody EmpVO empVO){
+//	public Map<String, Object> empUpdateAJAXQueryString(EmpVO empVO){
 //		return empService.empUpdate(empVO);
 //	}
+	
+	// 수정 - 처리 : AJAX => JSON(@RequestBody)
+	@PostMapping("empUpdate")
+	@ResponseBody // AJAX
+	public Map<String, Object> empUpdateAJAXJSON(@RequestBody EmpVO empVO){
+		return empService.empUpdate(empVO);
+	}
 	
 	// 삭제 - 처리 : GET
 	@GetMapping("empDelete")

@@ -22,7 +22,7 @@ public class ThymeleafController {
 		empVO.setEmployeeId(100);
 		
 		EmpVO findVO = empSercive.empInfo(empVO);
-		model.addAttribute("impInfo", findVO);
+		model.addAttribute("empInfo", findVO);
 		return "test";
 	}
 	

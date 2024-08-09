@@ -5,9 +5,20 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- thymeleaf, 유일한 태그 -->
+	<!--/* thymeleaf, 유일한 태그 */-->
 	<th:block th:each="num:${#numbers.sequence(1,5)}">
 		<p th:text="${num}"></p>
 	</th:block>
+
+	<!--/* 타임리프 기본방식
+	         1) th:속성="${}" 
+	         3. th:src="@{}" or
+	            th:href="@{}"or
+	            th:action="@{}" */-->
+	<a th:href="@{/empList}" th:text="'전체조회'"></a>
+	<a href="/empList">전체조회</a>	
+	<hr>
+	<p>[[ ${empInfo} ]]</p>
+	<p th:id="${empInfo.employeeId}" th:name="${empInfo.lastName}">[[|${empInfo.jobId}, ${empInfo.departmentId}|]]</p>
 </body>
 </html>

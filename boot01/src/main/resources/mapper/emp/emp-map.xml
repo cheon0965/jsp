@@ -98,7 +98,9 @@
 		SET 
 		      last_name = #{emp.lastName}		      
 	  	      , job_id = #{emp.jobId}
+	  	       <if test="emp.salary > 0">
 	  	      , salary = #{emp.salary}
+	  	       </if>
 	    WHERE  employee_id = #{id}
 	</update>
 
