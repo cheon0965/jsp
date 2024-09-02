@@ -37,6 +37,8 @@ public class SpringSecurityConfig {
 		.logout(logout -> logout
 				.logoutSuccessUrl("/all")
 				.invalidateHttpSession(true));
+		
+		http.csrf(csrf -> csrf.disable());
 		return http.build();
 	}
 	
