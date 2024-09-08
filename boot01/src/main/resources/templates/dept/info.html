@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layout/default_layout}"
+	layout:fragment="Content">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<body>
+	<div>
+		<h1>상세부서</h1>
+		<form>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="departmentId">사원번호: </label> <input type="text"
+						th:id="departmentId" name="departmentId" class="form-control"
+						th:value="${dept.departmentId}" readonly>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="departmentName">이름: </label> <input type="text"
+						th:id="departmentName" name="departmentName" class="form-control"
+						th:value="${dept.departmentName}" readonly>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="managerId">이메일: </label> <input type="text" name="managerId"
+						th:id="managerId" class="form-control" th:value="${dept.managerId}"
+						readonly>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="locationId">업무: </label> <input type="text" name="locationId"
+						th:id="locationId" class="form-control" th:value="${dept.locationId}"
+						readonly>
+				</div>
+			</div>
+			<button type="button" class="btn btn-primary"
+				th:onclick="|location.href='@{deptUpdate(departmentId=${dept.departmentId})}'|">수정</button>
+			<button type="button" class="btn btn-success"
+				th:onclick="|location.href='@{deptList}'|">목록</button>
+			<button type="button" class="btn btn-warning"
+				th:onclick="|location.href='@{deptDelete(departmentId=${dept.departmentId})}'|">삭제</button>
+		</form>
+	</div>
+</body>
+</html>

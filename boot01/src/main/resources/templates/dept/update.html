@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layout/default_layout}"
+	layout:fragment="Content">
+<head>
+<meta charset="UTF-8" />
+<meta name="contextPath" th:value="${contextPath}" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<h1>사원등록</h1>
+		<form name="updateForm" th:object="${emp}">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="employeeId">사원번호: </label> <input type="text"
+						class="form-control" th:field="*{employeeId}" readonly />
+				</div>
+				<div class="form-group col-md-6">
+					<label for="lastName">이름: </label> <input type="text"
+						class="form-control" th:field="*{lastName}" />
+				</div>
+				<div class="form-group col-md-6">
+					<label for="email">이메일: </label> <input type="email"
+						class="form-control" th:field="*{email}" />
+				</div>
+				<div class="form-group col-md-6">
+					<label for="hireDate">입사일: </label> <input type="date"
+						class="form-control" th:field="*{hireDate}" />
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="jobId">업무: </label> <input type="text"
+						class="form-control" th:field="*{jobId}" />
+				</div>
+				<div class="form-group col-md-6">
+					<label for="salary">급여: </label> <input type="text"
+						class="form-control" th:field="*{salary}" />
+				</div>
+			</div>
+			<button type="button" class="btn btn-secondary" id="updateBtn">저장</button>
+			<button type="button" class="btn btn-success"
+				th:onclick="|location.href='@{empInfo(employeeId=${emp.employeeId})}'|">
+				취소</button>
+		</form>
+	</div>
+	<script>
+      const contextPath = $('meta[name=contextPath]').attr('value');
+      let url = contextPath + '/empUpdate';
+      $('#updateBtn').on('click', updateAjax);
+      // 1) 보낼 데이터 가지고 오기
+      function getFormData() {
+        let formAry = $("form[name = 'updateForm']").serializeArray();
+        let formObj = {};
+        $.each(formAry, function (idx, tag) {
+          formObj[tag.name] = tag.value;
+        });
+        return formObj;
+      }
+
+      // 2) AJAX
+      function updateAjax(e) {
+        $.ajax({
+          type: 'post',
+          url,
+          contentType: 'application/json',
+          //   data: getFormData(),
+          data: JSON.stringify(getFormData()),
+        })
+          .done((result) => {
+            console.log(result);
+          })
+          .fail((ree) => console.log(err));
+      }
+    </script>
+</body>
+</html>

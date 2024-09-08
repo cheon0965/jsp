@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layout/default_layout}"
+	layout:fragment="Content">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<h1>사원등록</h1>
+		<form th:action="@{empInsert}" method="post" name="insertForm">
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="lastName">이름: </label> <input type="text" id="lastName"
+						name="lastName" class="form-control" />
+				</div>
+				<div class="form-group col-md-6">
+					<label for="email">이메일: </label> <input type="email" name="email"
+						id="email" class="form-control" />
+				</div>
+				<div class="form-group col-md-6">
+					<label for="hireDate">입사일: </label> <input type="date"
+						id="hireDate" name="hireDate" class="form-control" />
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="jobId">업무: </label> <input type="text" name="jobId"
+						id="jobId" class="form-control" />
+				</div>
+				<div class="form-group col-md-6">
+					<label for="salary">급여: </label> <input type="text" name="salary"
+						id="salary" class="form-control" />
+				</div>
+			</div>
+			<button type="submit" class="btn btn-primary">저장</button>
+			<button type="button" class="btn btn-secondary"
+				th:onclick="|location.href='@{empList}'|">취소</button>
+		</form>
+	</div>
+	<script>
+      $('form[name="insertForm"]').on('submit', function (e) {
+        e.preventDefault();
+        let item = [lastName, email, hireDate, jobId, salary];
+        for (ele of item) {
+          if (!$(ele).val()) {
+            alert(`${ele.id}값이 없습니다`);
+            $(ele).focus();
+            return;
+          }
+        }
+        insertForm.submit();
+      });
+    </script>
+</body>
+</html>

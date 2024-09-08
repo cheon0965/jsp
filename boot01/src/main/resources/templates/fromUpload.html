@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>From 방식</title>
+</head>
+<!-- fromUpload.html -->
+<body>
+	<form th:action="@{/uploadForm}" method="post" enctype="multipart/form-data">
+		<input type="file" name="files" multiple>
+		<button type="submit">저장</button>
+	</form>
+</body>
+</html>
