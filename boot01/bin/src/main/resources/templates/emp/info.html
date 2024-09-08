@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{common/layout/default_layout}"
+	layout:fragment="Content">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<body>
+	<div>
+		<h1>사원등록</h1>
+		<form>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="employeeId">사원번호: </label> <input type="text"
+						th:id="employeeId" name="employeeId" class="form-control"
+						th:value="${emp.employeeId}" readonly>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="lastName">이름: </label> <input type="text"
+						th:id="lastName" name="lastName" class="form-control"
+						th:value="${emp.lastName}" readonly>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="email">이메일: </label> <input type="email" name="email"
+						th:id="email" class="form-control" th:value="${emp.email}"
+						readonly>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="hireDate">입사일: </label> <input type="date"
+						class="form-control" th:field="${emp.hireDate}" readonly>
+				</div>
+			</div>
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="jobId">업무: </label> <input type="text" name="jobId"
+						th:id="jobId" class="form-control" th:value="${emp.jobId}"
+						readonly>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="salary">급여: </label> <input type="text" name="salary"
+						th:id="salary" class="form-control" th:value="${emp.salary}"
+						readonly>
+				</div>
+			</div>
+			<button type="button" class="btn btn-primary"
+				th:onclick="|location.href='@{empUpdate(employeeId=${emp.employeeId})}'|">수정</button>
+			<button type="button" class="btn btn-success"
+				th:onclick="|location.href='@{empList}'|">목록</button>
+			<button type="button" class="btn btn-warning"
+				th:onclick="|location.href='@{empDelete(employeeId=${emp.employeeId})}'|">삭제</button>
+		</form>
+	</div>
+</body>
+</html>
